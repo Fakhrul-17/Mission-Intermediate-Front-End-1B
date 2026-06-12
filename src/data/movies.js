@@ -1,11 +1,12 @@
 // Data poster film untuk tiap section di home
-// Sumber gambar: TMDB - poster sudah diverifikasi sesuai judul
+// Sumber gambar: TMDB
 const img = (path) => `https://image.tmdb.org/t/p/w500${path}`
 
-// Melanjutkan Tonton — poster + judul sudah match
+// Melanjutkan Tonton — array of object lengkap (untuk CRUD)
 export const melanjutkanTonton = [
   {
-    url: img('https://image.tmdb.org/t/p/original/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg'), // All of Us Are Dead - Netflix
+    id: 1,
+    url: img('/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg'),
     title: 'All of Us Are Dead',
     rating: '4.5',
     isSeries: true,
@@ -15,7 +16,8 @@ export const melanjutkanTonton = [
     genres: ['Horror', 'Drama', 'Thriller'],
   },
   {
-    url: img('/th4E1yqsE8DGpAseLiUrI60Hf8V.jpg'), // Don't Look Up
+    id: 2,
+    url: img('/th4E1yqsE8DGpAseLiUrI60Hf8V.jpg'),
     title: "Don't Look Up",
     rating: '4.5',
     isSeries: false,
@@ -24,7 +26,8 @@ export const melanjutkanTonton = [
     genres: ['Komedi', 'Drama', 'Sci-Fi'],
   },
   {
-    url: img('/74xTEgt7R36Fpooo50r9T25onhq.jpg'), // The Batman
+    id: 3,
+    url: img('/74xTEgt7R36Fpooo50r9T25onhq.jpg'),
     title: 'The Batman',
     rating: '4.2',
     isSeries: false,
@@ -33,7 +36,8 @@ export const melanjutkanTonton = [
     genres: ['Aksi', 'Kriminal', 'Misteri'],
   },
   {
-    url: img('/130H1gap9lFfiTF9iDrqNIkFvC9.jpg'), // A Man Called Otto
+    id: 4,
+    url: img('/130H1gap9lFfiTF9iDrqNIkFvC9.jpg'),
     title: 'A Man Called Otto',
     rating: '4.4',
     isSeries: false,
@@ -42,7 +46,8 @@ export const melanjutkanTonton = [
     genres: ['Drama', 'Komedi', 'Keluarga'],
   },
   {
-    url: img('/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg'), // Squid Game
+    id: 5,
+    url: img('/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg'),
     title: 'Squid Game',
     rating: '4.7',
     isSeries: true,
@@ -52,7 +57,8 @@ export const melanjutkanTonton = [
     genres: ['Thriller', 'Drama', 'Misteri'],
   },
   {
-    url: img('/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg'), // John Wick: Chapter 4
+    id: 6,
+    url: img('/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg'),
     title: 'John Wick: Chapter 4',
     rating: '4.6',
     isSeries: false,
@@ -61,7 +67,8 @@ export const melanjutkanTonton = [
     genres: ['Aksi', 'Thriller', 'Kriminal'],
   },
   {
-    url: img('/49WJfeN0moxb9IPfGn8AIqMGskD.jpg'), // Stranger Things
+    id: 7,
+    url: img('/49WJfeN0moxb9IPfGn8AIqMGskD.jpg'),
     title: 'Stranger Things',
     rating: '4.8',
     isSeries: true,
@@ -71,7 +78,8 @@ export const melanjutkanTonton = [
     genres: ['Misteri', 'Sci-Fi', 'Horror'],
   },
   {
-    url: img('/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg'), // Sonic the Hedgehog 2
+    id: 8,
+    url: img('/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg'),
     title: 'Sonic the Hedgehog 2',
     rating: '4.3',
     isSeries: false,
@@ -80,7 +88,8 @@ export const melanjutkanTonton = [
     genres: ['Animasi', 'Petualangan', 'Komedi'],
   },
   {
-    url: img('/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg'), // Avengers: Infinity War
+    id: 9,
+    url: img('/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg'),
     title: 'Avengers: Infinity War',
     rating: '4.7',
     isSeries: false,
@@ -90,38 +99,230 @@ export const melanjutkanTonton = [
   },
 ]
 
-// Top Rating Film dan Series
+// Top Rating Film dan Series - array of object
 export const topRating = [
-  img('https://image.tmdb.org/t/p/original/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg'), // Dune Part Two
-  img('https://image.tmdb.org/t/p/original/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg'), // Meg 2: The Trench
-  img('/74xTEgt7R36Fpooo50r9T25onhq.jpg'), // The Batman
-  img('/130H1gap9lFfiTF9iDrqNIkFvC9.jpg'), // A Man Called Otto
-  img('/49WJfeN0moxb9IPfGn8AIqMGskD.jpg'), // Stranger Things
-  img('/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg'), // John Wick: Chapter 4
-  img('/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg'), // Sonic 2
-  img('/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg'), // Avengers: Infinity War
+  {
+    id: 101,
+    url: img('/8b8R8l88Qje9dn9OE8PY05Nxl1X.jpg'),
+    title: 'Dune: Part Two',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '2j 46m',
+    genres: ['Aksi', 'Petualangan', 'Sci-Fi'],
+  },
+  {
+    id: 102,
+    url: img('/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg'),
+    title: 'Meg 2: The Trench',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '1j 56m',
+    genres: ['Aksi', 'Sci-Fi', 'Horror'],
+  },
+  {
+    id: 103,
+    url: img('/74xTEgt7R36Fpooo50r9T25onhq.jpg'),
+    title: 'The Batman',
+    ageRating: '17+',
+    isSeries: false,
+    duration: '2j 56m',
+    genres: ['Aksi', 'Kriminal', 'Misteri'],
+  },
+  {
+    id: 104,
+    url: img('/130H1gap9lFfiTF9iDrqNIkFvC9.jpg'),
+    title: 'A Man Called Otto',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '2j 06m',
+    genres: ['Drama', 'Komedi', 'Keluarga'],
+  },
+  {
+    id: 105,
+    url: img('/49WJfeN0moxb9IPfGn8AIqMGskD.jpg'),
+    title: 'Stranger Things',
+    ageRating: '13+',
+    isSeries: true,
+    episodeCount: '34 Episode',
+    genres: ['Misteri', 'Sci-Fi', 'Horror'],
+  },
+  {
+    id: 106,
+    url: img('/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg'),
+    title: 'John Wick: Chapter 4',
+    ageRating: '17+',
+    isSeries: false,
+    duration: '2j 49m',
+    genres: ['Aksi', 'Thriller', 'Kriminal'],
+  },
+  {
+    id: 107,
+    url: img('/6DrHO1jr3qVrViUO6s6kFiAGM7.jpg'),
+    title: 'Sonic the Hedgehog 2',
+    ageRating: '7+',
+    isSeries: false,
+    duration: '2j 02m',
+    genres: ['Animasi', 'Petualangan', 'Komedi'],
+  },
+  {
+    id: 108,
+    url: img('/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg'),
+    title: 'Avengers: Infinity War',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '2j 29m',
+    genres: ['Aksi', 'Petualangan', 'Sci-Fi'],
+  },
 ]
 
 // Film Trending
 export const filmTrending = [
-  img('https://image.tmdb.org/t/p/original/qJ2tW6WMUDux911r6m7haRef0WH.jpg'), // The Dark Knight
-  img('https://image.tmdb.org/t/p/original/or06FN3Dka5tukK1e9sl16pB3iy.jpg'), // Avengers: Endgame
-  img('https://image.tmdb.org/t/p/original/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg'), // The Super Mario Bros Movie
-  img('https://image.tmdb.org/t/p/original/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg'), // Game of Thrones
-  img('https://image.tmdb.org/t/p/original/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg'), // All of Us Are Dead
-  img('https://image.tmdb.org/t/p/original/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg'), // Spiderman: Across the spider-verse
-  img('https://image.tmdb.org/t/p/original/9PFonBhy4cQy7Jz20NpMygczOkv.jpgg'), // Wednesday
-  img('https://image.tmdb.org/t/p/original/7vjaCdMw15FEbXyLQTVa04URsPm.jpg'), // The witcher
+  {
+    id: 201,
+    url: img('/qJ2tW6WMUDux911r6m7haRef0WH.jpg'),
+    title: 'The Dark Knight',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '2j 32m',
+    genres: ['Aksi', 'Kriminal', 'Drama'],
+  },
+  {
+    id: 202,
+    url: img('/or06FN3Dka5tukK1e9sl16pB3iy.jpg'),
+    title: 'Avengers: Endgame',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '3j 02m',
+    genres: ['Aksi', 'Petualangan', 'Sci-Fi'],
+  },
+  {
+    id: 203,
+    url: img('/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg'),
+    title: 'The Super Mario Bros Movie',
+    ageRating: '7+',
+    isSeries: false,
+    duration: '1j 32m',
+    genres: ['Animasi', 'Komedi', 'Petualangan'],
+  },
+  {
+    id: 204,
+    url: img('/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg'),
+    title: 'Game of Thrones',
+    ageRating: '17+',
+    isSeries: true,
+    episodeCount: '73 Episode',
+    genres: ['Drama', 'Fantasi', 'Aksi'],
+  },
+  {
+    id: 205,
+    url: img('/pTEFqAjLd5YTsMD6NSUxV6Dq7A6.jpg'),
+    title: 'All of Us Are Dead',
+    ageRating: '17+',
+    isSeries: true,
+    episodeCount: '16 Episode',
+    genres: ['Horror', 'Drama', 'Thriller'],
+  },
+  {
+    id: 206,
+    url: img('/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg'),
+    title: 'Spider-Man: Across the Spider-Verse',
+    ageRating: '7+',
+    isSeries: false,
+    duration: '2j 20m',
+    genres: ['Animasi', 'Aksi', 'Petualangan'],
+  },
+  {
+    id: 207,
+    url: img('/9PFonBhy4cQy7Jz20NpMygczOkv.jpg'),
+    title: 'Wednesday',
+    ageRating: '13+',
+    isSeries: true,
+    episodeCount: '8 Episode',
+    genres: ['Misteri', 'Komedi', 'Horror'],
+  },
+  {
+    id: 208,
+    url: img('/7vjaCdMw15FEbXyLQTVa04URsPm.jpg'),
+    title: 'The Witcher',
+    ageRating: '17+',
+    isSeries: true,
+    episodeCount: '24 Episode',
+    genres: ['Fantasi', 'Aksi', 'Petualangan'],
+  },
 ]
 
 // Rilis Baru
 export const rilisBaru = [
-  img('https://image.tmdb.org/t/p/original/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg'), // money heist
-  img('https://image.tmdb.org/t/p/original/ggFHVNu6YYI5L9pCfOacjizRGt.jpg'), // Breaking Bead
-  img('https://image.tmdb.org/t/p/original/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg'), // The Last Of Us
-  img('https://image.tmdb.org/t/p/original/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg'), // Demon Slayer: Mugen Train
-  img('https://image.tmdb.org/t/p/original/20mOwAAPwZ1vLQkw0fvuQHiG7bO.jpg'), // Alice in Borderland
-  img('https://image.tmdb.org/t/p/original/Ia3dzj5LnCj1ZBdlVeJrbKJQxG.jpg'), // Me Before You
-  img('https://image.tmdb.org/t/p/original/wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg'), //A Star Is Born
-  img('https://image.tmdb.org/t/p/original/rNzQyW4f8B8cQeg7Dgj3n6eT5k9.jpg'), //The Notebook
+  {
+    id: 301,
+    url: img('/reEMJA1uzscCbkpeRJeTT2bjqUp.jpg'),
+    title: 'Money Heist',
+    ageRating: '17+',
+    isSeries: true,
+    episodeCount: '41 Episode',
+    genres: ['Kriminal', 'Thriller', 'Drama'],
+  },
+  {
+    id: 302,
+    url: img('/ggFHVNu6YYI5L9pCfOacjizRGt.jpg'),
+    title: 'Breaking Bad',
+    ageRating: '17+',
+    isSeries: true,
+    episodeCount: '62 Episode',
+    genres: ['Kriminal', 'Drama', 'Thriller'],
+  },
+  {
+    id: 303,
+    url: img('/uKvVjHNqB5VmOrdxqAt2F7J78ED.jpg'),
+    title: 'The Last of Us',
+    ageRating: '17+',
+    isSeries: true,
+    episodeCount: '9 Episode',
+    genres: ['Drama', 'Horror', 'Petualangan'],
+  },
+  {
+    id: 304,
+    url: img('/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg'),
+    title: 'Demon Slayer: Mugen Train',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '1j 57m',
+    genres: ['Animasi', 'Aksi', 'Fantasi'],
+  },
+  {
+    id: 305,
+    url: img('/20mOwAAPwZ1vLQkw0fvuQHiG7bO.jpg'),
+    title: 'Alice in Borderland',
+    ageRating: '17+',
+    isSeries: true,
+    episodeCount: '16 Episode',
+    genres: ['Thriller', 'Sci-Fi', 'Misteri'],
+  },
+  {
+    id: 306,
+    url: img('/Ia3dzj5LnCj1ZBdlVeJrbKJQxG.jpg'),
+    title: 'Me Before You',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '1j 50m',
+    genres: ['Drama', 'Romantis'],
+  },
+  {
+    id: 307,
+    url: img('/wrFpXMNBRj2PBiN4Z5kix51XaIZ.jpg'),
+    title: 'A Star Is Born',
+    ageRating: '17+',
+    isSeries: false,
+    duration: '2j 16m',
+    genres: ['Drama', 'Romantis', 'Musik'],
+  },
+  {
+    id: 308,
+    url: img('/rNzQyW4f8B8cQeg7Dgj3n6eT5k9.jpg'),
+    title: 'The Notebook',
+    ageRating: '13+',
+    isSeries: false,
+    duration: '2j 03m',
+    genres: ['Drama', 'Romantis'],
+  },
 ]

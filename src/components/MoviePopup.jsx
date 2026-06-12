@@ -1,4 +1,26 @@
-function MoviePopup({ data, onClose }) {
+import { useState, useEffect } from 'react'
+
+function MoviePopup({
+  data,
+  onClose,
+  enableCrud,
+  onToggleWatched,
+  onSetRating,
+  onDelete,
+  onAddToWatchlist,
+}) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // Close dropdown saat klik di luar
+  useEffect(() => {
+    if (!isMenuOpen) return
+    function handleClickOutside() {
+      setIsMenuOpen(false)
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => document.removeEventListener('click', handleClickOutside)
+  }, [isMenuOpen])
+
   if (!data) return null
 
   const {
@@ -10,7 +32,12 @@ function MoviePopup({ data, onClose }) {
     progress = 60,
     rating = '4.5',
     genres = ['Misteri', 'Kriminal', 'Fantasi'],
+    isWatched,
+    userRating,
   } = data
+
+  // Tentukan apakah ada action menu yang tersedia
+  const hasMenu = enableCrud || onAddToWatchlist
 
   return (
     <div
@@ -21,6 +48,83 @@ function MoviePopup({ data, onClose }) {
         className="relative w-full max-w-[340px] md:max-w-[420px] rounded-2xl overflow-hidden bg-zinc-900 shadow-2xl shadow-black/80 ring-1 ring-white/10 animate-card-expand-popup mb-10"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Tombol Menu (⋮) - hanya muncul kalau ada action */}
+        {hasMenu && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsMenuOpen(!isMenuOpen)
+            }}
+            className="absolute top-3 right-14 z-30 w-9 h-9 rounded-full bg-black/70 backdrop-blur-md flex items-center justify-center text-white text-lg hover:bg-black/90 active:scale-95 transition-all ring-1 ring-white/10"
+            title="Menu"
+          >
+            ⋮
+          </button>
+        )}
+
+        {/* Dropdown menu */}
+        {isMenuOpen && hasMenu && (
+          <div
+            className="absolute top-14 right-3 z-40 bg-zinc-900/95 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-1 min-w-[200px] animate-fade-in"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {enableCrud ? (
+              <>
+                <button
+                  onClick={() => {
+                    onToggleWatched(data.id)
+                    setIsMenuOpen(false)
+                  }}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-white hover:bg-white/10 transition-colors flex items-center gap-2.5"
+                >
+                  <span className="text-base">{isWatched ? '🔄' : '✓'}</span>
+                  <span>{isWatched ? 'Belum Ditonton' : 'Tandai Sudah Ditonton'}</span>
+                </button>
+
+                {onSetRating && (
+                  <button
+                    onClick={() => {
+                      onSetRating(data)
+                      setIsMenuOpen(false)
+                      onClose()
+                    }}
+                    className="w-full text-left px-3 py-2 rounded-lg text-sm text-white hover:bg-white/10 transition-colors flex items-center gap-2.5"
+                  >
+                    <span className="text-base">⭐</span>
+                    <span>{userRating > 0 ? 'Ubah Rating' : 'Beri Rating'}</span>
+                  </button>
+                )}
+
+                <button
+                  onClick={() => {
+                    onDelete(data)
+                    setIsMenuOpen(false)
+                    onClose()
+                  }}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-red-400 hover:bg-red-500/10 transition-colors flex items-center gap-2.5"
+                >
+                  <span className="text-base">🗑️</span>
+                  <span>Hapus dari Daftar</span>
+                </button>
+              </>
+            ) : (
+              onAddToWatchlist && (
+                <button
+                  onClick={() => {
+                    onAddToWatchlist(data)
+                    setIsMenuOpen(false)
+                    onClose()
+                  }}
+                  className="w-full text-left px-3 py-2 rounded-lg text-sm text-white hover:bg-white/10 transition-colors flex items-center gap-2.5"
+                >
+                  <span className="text-base">➕</span>
+                  <span>Tambah ke Daftar</span>
+                </button>
+              )
+            )}
+          </div>
+        )}
+
         {/* Close button */}
         <button
           onClick={onClose}
@@ -40,6 +144,17 @@ function MoviePopup({ data, onClose }) {
               aspectRatio: '4/3',
             }}
           />
+
+          {/* Badge Sudah Ditonton */}
+          {isWatched && (
+            <div className="absolute top-3 left-3 z-10 flex items-center gap-1 px-2.5 py-1 rounded-full bg-green-500/90 backdrop-blur-sm text-white text-xs font-semibold shadow-md">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Ditonton</span>
+            </div>
+          )}
+
           {/* Gradient fade bawah */}
           <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-zinc-900 to-transparent" />
         </div>
@@ -87,10 +202,19 @@ function MoviePopup({ data, onClose }) {
               )}
             </div>
 
-            {/* Rating badge */}
-            <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/10 text-white text-xs md:text-sm font-semibold shrink-0">
-              <span className="text-yellow-400">⭐</span>
-              <span>{rating}</span>
+            {/* Rating row: IMDb + user rating */}
+            <div className="flex flex-col items-end gap-1 shrink-0">
+              <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/10 text-white text-xs md:text-sm font-semibold">
+                <span className="text-yellow-400">⭐</span>
+                <span>{rating}</span>
+              </div>
+
+              {userRating > 0 && (
+                <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-yellow-500/90 text-black text-xs font-bold">
+                  <span>★</span>
+                  <span>{userRating}</span>
+                </div>
+              )}
             </div>
           </div>
 

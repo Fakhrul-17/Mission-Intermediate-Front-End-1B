@@ -5,13 +5,13 @@ function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/assets/img/pp.jpeg')",
+          backgroundImage: `url('${import.meta.env.BASE_URL}assets/img/pp.jpeg')`,
         }}
       />
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-t from-chill-bg via-chill-bg/50 to-transparent md:via-chill-bg/60" />
-      <div className="absolute inset-0 bg-gradient-to-r from-chill-bg/90 via-chill-bg/40 to-transparent hidden md:block" />
+<div className="absolute inset-0 bg-gradient-to-t from-chill-bg via-chill-bg/20 to-transparent md:via-chill-bg/30" />
+<div className="absolute inset-0 bg-gradient-to-r from-chill-bg/60 via-chill-bg/10 to-transparent hidden md:block" />
 
       {/* Content */}
       <div className="relative h-full flex flex-col justify-end pb-5 md:pb-20 px-4 md:px-10 max-w-3xl animate-fade-up">

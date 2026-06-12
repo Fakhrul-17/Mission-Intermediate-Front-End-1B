@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom'
 
 // Komponen untuk melindungi halaman home agar hanya bisa diakses
-// jika user sudah login (cek dari localStorage)
+// jika user sudah login 
 function ProtectedRoute({ children }) {
   const isLogin = localStorage.getItem('login')
 
